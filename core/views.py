@@ -3,7 +3,7 @@ from django.shortcuts import render
 from blog.models import Post
 
 
-def frontpage(request):
+def index(request):
     posts = Post.objects.all()
     return render(request, 'core/index.html', {
         'posts': posts
