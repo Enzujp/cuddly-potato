@@ -13,7 +13,7 @@ class Category(models.Model):
         return self.title
 
 class Post(models.Model):
-    Category = models.ForeignKey(Category, related_name="posts", on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name="posts", on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     slug = models.SlugField()
     intro = models.TextField()
