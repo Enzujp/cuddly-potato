@@ -1,0 +1,1 @@
+Integrate template for blog app
