@@ -7,8 +7,13 @@ class Category(models.Model):
 
     class Meta:
         ordering = ('title',)
+        verbose_name_plural = 'categories'
+
+    def __str__(self):
+        return self.title
 
 class Post(models.Model):
+    Category = models.ForeignKey(Category, related_name="posts", on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     slug = models.SlugField()
     intro = models.TextField()
