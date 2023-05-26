@@ -3,8 +3,26 @@ from django.contrib import admin
 # Register your models here.
 from .models import Post, Category, Comment
 
-admin.site.register(Post)
+class CommentItemInline(admin.TabularInline):
+    model = Comment
+    raw_id_fields = ['post']
 
-admin.site.register(Category)
+class PostAdmin(admin.ModelAdmin):
+    search_fields = ['title', 'intro', 'body']
+    list_display = ['title', 'slug', 'category', 'created_at']
+    list_filter = ['category', 'created_at']
+    inlines = [CommentItemInline]
 
-admin.site.register(Comment)
+class CategoryAdmin(admin.ModelAdmin):
+    search_fields = ['title']
+    list_display = ['title']
+    prepopulated_fields = {'slug': ('title',)}
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['name', 'post', 'created_at']
+
+admin.site.register(Post, PostAdmin)
+
+admin.site.register(Category, CategoryAdmin)
+
+admin.site.register(Comment, CommentAdmin)
