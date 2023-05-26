@@ -1,10 +1,14 @@
 from django.shortcuts import render
 
-# Create your views here.
+from blog.models import Post
 
 
 def frontpage(request):
-    return render(request, 'core/index.html')
+    posts = Post.objects.all()
+    return render(request, 'core/index.html', {
+        'posts': posts
+    })
 
 def about (request):
     return render(request, 'core/about.html')
+
