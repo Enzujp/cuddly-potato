@@ -1,3 +1,3 @@
-Integrate template for blog app -
-Push integrated template to github-
+Integrate template for blog app - done 
+Push integrated template to github- done
 Build app-
