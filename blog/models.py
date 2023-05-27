@@ -13,13 +13,27 @@ class Category(models.Model):
         return self.title
 
 class Post(models.Model):
+
+    ACTIVE = 'active'
+    DRAFT = 'draft'
+    DELETED = 'deleted'
+
+    STATUS_CHOICES = (
+        (ACTIVE, 'Active'),
+        (DRAFT, 'Draft'),
+        (DELETED, 'Deleted'),
+    )
+
+
     category = models.ForeignKey(Category, related_name="posts", on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     slug = models.SlugField()
     intro = models.TextField()
     body= models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=ACTIVE)
+
+
     class Meta:
         ordering = ('-created_at',)
         #helps organize posts in time of posting
