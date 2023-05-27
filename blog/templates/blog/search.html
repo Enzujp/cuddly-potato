@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 
-{% block title %}{{ category.title }} | Cuddlypotato{% endblock %}
+{% block title %}Search |{% endblock %}
 
 {% block content %}
     <section class="hero">
@@ -9,6 +9,10 @@
                 <section class="section">
                     <div class="columns">
                         <div class="column is-8 is-offset-2">
+                            <div class="content is-medium">
+                                <h1> Showing search results for: <small>"{{ query }}"</small></h1>
+                            </div>
+
                             {% for post in posts %}
                                 <div class="content is-medium">
                                     <a href="{% url 'post_detail' post.category.slug post.slug %}">
@@ -17,12 +21,14 @@
                                         <p>{{ post.intro }}</p>
                                     </a>
                                 </div>
-                            {% endfor %}
+                            
                             
                             {% empty %}
                             <div class="content">
-                                <p>There are no posts in this category...</p>
+                                <p>No results match this search ...</p>
                             </div>
+
+                            {% endfor %}
                         </div>
                     </div>
                 </section>
