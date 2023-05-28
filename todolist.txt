@@ -1,3 +1,13 @@
 Integrate template for blog app - done 
 Push integrated template to github- done
-Build app-
+Build app- done
+
+- install software on server - done 
+- install virtualenv - done
+- create group and user - done
+- create environment - done
+- Get project from git
+- install packages
+- install and setup gunicorn
+- install and set up supervisor
+- set up Nginx
