@@ -5,9 +5,10 @@
         "use": "@vercel/python"
       }
     ],
-   
-
-     "rewrites": [{ "source": "/(.*)", "destination": "/" }] 
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "cuddlypotato/wsgi.py"
+      }
+    ]
 }
-
-
