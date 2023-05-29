@@ -1,10 +1,5 @@
 {
-    "builds": [
-      {
-        "src": "cuddlypotato/wsgi.py",
-        "use": "@vercel/python"
-      }
-    ],
+ 
     "routes": [
       {
         "src": "/(.*)",
