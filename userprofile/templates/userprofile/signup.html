@@ -1,0 +1,19 @@
+{% extends 'core/index.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} SignUp | Cuddlypotato {% endblock %}
+
+{% block content %}
+
+<form method="post" action="." class="mb-6">
+    {% csrf_token %}
+    
+    {{ form|crispy }}
+
+    <div class="field">
+        <div class="control">
+            <button class="button is-success mt-6">Signup</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
