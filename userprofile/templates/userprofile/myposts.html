@@ -1,0 +1,10 @@
+{% extends 'core/index.html' %}
+
+
+{% block title %} My Posts | Cuddlypotato {% endblock %}
+
+{% block content %}
+{% if user.posts %}
+    {{ user.posts }}
+{% endif %}
+{% endblock %}

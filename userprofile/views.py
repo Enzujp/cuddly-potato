@@ -60,7 +60,7 @@ def myaccount(request):
 
 
 def my_posts(request):
-    posts = request.author.posts.filter(status=Post.ACTIVE)
+    posts = request.user.posts.filter(status=Post.ACTIVE)
     return render(request, 'userprofile/myposts.html', {
         'posts': posts
         #this function would show users their active posts
@@ -71,8 +71,18 @@ def new_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-        return redirect ('my-posts')
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            obj = form.instance
+            alert = True
+            
+            return render(request, 'userprofile/new_post.html', {
+                'form': form,
+                'obj': obj,
+                'alert': alert
+    })
+        return redirect ('index')
     else:
         form = PostForm()
         

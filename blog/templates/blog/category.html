@@ -17,12 +17,11 @@
                                         <p>{{ post.intro }}</p>
                                     </a>
                                 </div>
+                                {% empty %}
+                                <div class="content">
+                                    <p>There are no posts in this category...</p>
+                                </div>
                             {% endfor %}
-                            
-                            {% empty %}
-                            <div class="content">
-                                <p>There are no posts in this category...</p>
-                            </div>
                         </div>
                     </div>
                 </section>

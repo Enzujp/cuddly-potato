@@ -8,10 +8,14 @@ from .models import Comment, Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('category', 'title', 'intro', 'body', 'image',)
+        fields = ('category', 'slug', 'title', 'intro', 'body', 'image',)
+        
 
     widgets = {
          'image': forms.ImageField(),
+         'slug': forms.TextInput(attrs={
+              'placeholder': 'type the tiele back in with no spaces between'
+         })
     }
 
 
