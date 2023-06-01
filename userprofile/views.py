@@ -37,8 +37,8 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                messages.info(request, f"you are now logged in as {username}, it's good to see you!.")
                 return redirect('index')
+                
             else:
                 messages.error(request, 'Invalid username or password')
         else:
@@ -56,7 +56,7 @@ def logout_request(request):
     return redirect('index')
 
 def myaccount(request):
-    return render(request, 'userprofile/myaccount.html')
+    return render(request, 'userprofile/accounts.html')
 
 
 def my_posts(request):
