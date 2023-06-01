@@ -4,6 +4,11 @@
 {% block title %} Login | Cuddlypotato {% endblock %}
 
 {% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    {% endif %}
 <form method="post" action="" class="mb-6">
     {% csrf_token %}
     

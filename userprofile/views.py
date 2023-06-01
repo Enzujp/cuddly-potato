@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, logout, authenticate
 from  django.contrib.auth.forms import AuthenticationForm
 
 from blog.models import Post, Category
@@ -26,7 +26,8 @@ def signup(request):
         'form': form
     })
 
-def sigin(request):
+
+def login_request(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -36,7 +37,7 @@ def sigin(request):
 
             if user is not None:
                 login(request, user)
-                messages.info(request, f"you are now logged in as {username}.")
+                messages.info(request, f"you are now logged in as {username}, it's good to see you!.")
                 return redirect('index')
             else:
                 messages.error(request, 'Invalid username or password')
@@ -45,9 +46,14 @@ def sigin(request):
     else:
         form = AuthenticationForm()
     
-    return render(request, 'userprofile/signin.html', {
+    return render(request, 'userprofile/login.html', {
         'form': form
     })
+
+def logout_request(request):
+    logout(request)
+    messages.info(request, 'You have successfully logged out, we hope to see you back sometime soon!')
+    return redirect('index')
 
 def myaccount(request):
     return render(request, 'userprofile/myaccount.html')
@@ -96,4 +102,5 @@ def delete_post(request, slug):
     post = Post.objects.filter(status=Post.ACTIVE).get(slug=slug)
     post.status = Post.DELETED
     post.save()
-    return redirect('index')
+    messages.success(request, 'Your post has been successfully deleted')
+    return redirect('myposts')
