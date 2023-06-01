@@ -1,0 +1,11 @@
+{% extends 'core/index.html' %}
+
+
+{% block title %} New Post | Cuddlypotato {% endblock %}
+
+{% block content %}
+{% if author.posts %}
+    {% for post in posts %}
+    {% endfor %}
+{% endif %}
+{% endblock %}
