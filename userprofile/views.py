@@ -5,7 +5,8 @@ from django.contrib.auth import login, logout, authenticate
 from  django.contrib.auth.forms import AuthenticationForm
 
 from blog.models import Post, Category
-from blog.forms import SignupForm, PostForm
+from userprofile.models import Profile
+from blog.forms import SignupForm, PostForm, UserProfileForm
 # Create your views here.
 
 def signup(request):
@@ -57,6 +58,22 @@ def logout_request(request):
 
 def myaccount(request):
     return render(request, 'userprofile/accounts.html')
+
+def profile(request):
+    return render(request, 'userprofile/profile.html')
+
+def edit_profile(request):
+    try:
+        profile = request.user.profile
+    except Profile.DoesNotExist:
+        profile = Profile(user=request.user)
+        if request.method == 'POST':
+            form = UserProfileForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+
+    return render(request, 'userprofile/edit_profile.html')
+
 
 
 def my_posts(request):
