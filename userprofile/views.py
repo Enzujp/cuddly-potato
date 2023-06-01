@@ -60,7 +60,8 @@ def myaccount(request):
 
 
 def my_posts(request):
-    posts = request.user.posts.filter(status=Post.ACTIVE)
+    posts = Post.objects.filter(author=request.user).filter(status=Post.ACTIVE)
+    # posts = request.user.posts.filter(status=Post.ACTIVE)
     return render(request, 'userprofile/myposts.html', {
         'posts': posts
         #this function would show users their active posts

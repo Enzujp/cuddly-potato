@@ -4,7 +4,12 @@
 {% block title %} My Posts | Cuddlypotato {% endblock %}
 
 {% block content %}
-{% if user.posts %}
-    {{ user.posts }}
-{% endif %}
+
+
+    {% for post in posts %}
+        <p>{{ post }}</p>
+        <p><a>Delete this shit</a></p>
+        <p><a>Edit this shit</a></p>
+        
+    {% endfor %}
 {% endblock %}
