@@ -20,7 +20,8 @@
                                     <h1 class="title">{{ post.title }}</h1>
                                     <strong><p>{{ post.intro }}</p></strong>
                                     <p>{{ post.body }}</p>
-                                    <p><a href="{% url 'edit-post' post.slug %}">Edit this shit</a></p> 
+                                    <p><a href="{% url 'edit-post' post.slug %}">Edit this post</a></p>
+                                    <p><a href="{% url 'delete-post' post.slug %}">Delete this post</a></p>
 
                                     <p><small>Category: <a href="{% url 'category_detail' post.category.slug %}">{{ post.category }}</small></p></a>
                                     <hr>
@@ -33,7 +34,7 @@
 
                                         <div class="field">
                                             <div class="control">
-                                                <button class="button is-success">Submit Comment</button>
+                                                <button class="button is-success">Submit</button>
                                             </div>
                                         </div>
                                     </form>
