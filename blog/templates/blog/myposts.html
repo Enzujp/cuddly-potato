@@ -5,11 +5,11 @@
 
 {% block content %}
 
-
+    
     {% for post in posts %}
         <p>{{ post }}</p>
-        <p><a>Delete this shit</a></p>
-        <p><a>Edit this shit</a></p>
+        <p><a href="{% url 'delete-post' post.slug %}">Delete this shit</a></p>
+        <p><a href="{% url 'edit-post' post.slug %}">Edit this shit</a></p>
         
     {% endfor %}
 {% endblock %}
