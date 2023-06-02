@@ -20,9 +20,10 @@
                                     <h1 class="title">{{ post.title }}</h1>
                                     <strong><p>{{ post.intro }}</p></strong>
                                     <p>{{ post.body }}</p>
+                                    {% if request.user == post.author %}
                                     <p><a href="{% url 'edit-post' post.slug %}">Edit this post</a></p>
                                     <p><a href="{% url 'delete-post' post.slug %}">Delete this post</a></p>
-
+                                    {% endif %}
                                     <p><small>Category: <a href="{% url 'category_detail' post.category.slug %}">{{ post.category }}</small></p></a>
                                     <hr>
 

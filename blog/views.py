@@ -1,5 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import PostForm
 
@@ -54,7 +55,7 @@ def my_posts(request):
         #this function would show users their active posts
     })
 
-
+@login_required
 def new_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -78,7 +79,7 @@ def new_post(request):
         'form': form
     })
 
-
+@login_required
 def edit_post(request, slug):
     post = Post.objects.filter(author=request.user).filter(status=Post.ACTIVE).get(slug=slug)
     
@@ -97,7 +98,7 @@ def edit_post(request, slug):
         'title': 'edit post'
     })
 
-
+@login_required
 def delete_post(request, slug):
     post = Post.objects.filter(author=request.user).filter(status=Post.ACTIVE).get(slug=slug)
     post.status = Post.DELETED

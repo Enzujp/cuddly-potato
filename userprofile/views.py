@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth import login, logout, authenticate
 from  django.contrib.auth.forms import AuthenticationForm
@@ -51,17 +52,21 @@ def login_request(request):
         'form': form
     })
 
+
 def logout_request(request):
     logout(request)
     messages.info(request, 'You have successfully logged out, we hope to see you back sometime soon!')
     return redirect('index')
 
+@login_required
 def myaccount(request):
     return render(request, 'userprofile/accounts.html')
 
+@login_required
 def profile(request):
     return render(request, 'userprofile/profile.html')
 
+@login_required
 def edit_profile(request):
     try:
         profile = request.user.profile
@@ -72,7 +77,9 @@ def edit_profile(request):
             if form.is_valid():
                 form.save()
 
-    return render(request, 'userprofile/edit_profile.html')
+    return render(request, 'userprofile/edit_profile.html', {
+        'profile': profile
+    })
 
 
 
