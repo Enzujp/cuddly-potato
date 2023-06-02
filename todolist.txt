@@ -2,7 +2,8 @@ Integrate template for blog app - done
 Push integrated template to github- done
 Build app- done
 add links for profile functionalities to dashboard
-organize my-posts
+organize my-posts - done
+crud operations - done
 deploy- 
 
 
