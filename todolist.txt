@@ -5,7 +5,7 @@ add links for profile functionalities to dashboard- done
 organize my-posts - done
 crud operations - done
 fix messages errors or remove them completely- 
-deploy- 
+deploy- done
 
 
 
